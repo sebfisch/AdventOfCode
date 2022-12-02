@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Part02 {
+public class Part2 {
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
             Biggest maxCalories = new Biggest(3);

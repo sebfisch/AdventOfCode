@@ -2,7 +2,7 @@ package aoc.y2022.day01;
 
 import java.util.Scanner;
 
-class Part01 {
+class Part1 {
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
             int maxCalories = 0;
