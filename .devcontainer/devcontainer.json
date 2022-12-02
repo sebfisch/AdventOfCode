@@ -1,0 +1,15 @@
+{
+    "name": "advent-of-code",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "aoc",
+    "workspaceFolder": "/home/me/code",
+    "settings": {
+        "terminal.integrated.profiles.linux": {}
+    },
+    "extensions": [
+        "mhutchie.git-graph"
+    ],
+    "remoteUser": "me"
+}

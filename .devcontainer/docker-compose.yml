@@ -1,0 +1,24 @@
+version: "3"
+volumes:
+  home:
+services:
+  aoc:
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    build:
+      context: "."
+      args:
+        JAVA_VERSION: 19
+        MAVEN3_VERSION: 3.8.6
+        GJF_VERSION: 1.15.0
+        USER: me
+        GROUP: me
+        HOME: /home/me
+        UID: 1000
+        GID: 1000
+    hostname: advent
+    volumes:
+      - home:/home
+      - ~/.ssh:/home/me/.ssh/
+      - ..:/home/me/code
+    working_dir: /home/me/code
+    user: me
