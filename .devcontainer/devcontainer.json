@@ -9,7 +9,8 @@
         "terminal.integrated.profiles.linux": {}
     },
     "extensions": [
-        "mhutchie.git-graph"
+        "mhutchie.git-graph",
+        "vscjava.vscode-java-pack"
     ],
     "remoteUser": "me"
 }
