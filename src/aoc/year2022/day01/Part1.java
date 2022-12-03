@@ -1,4 +1,4 @@
-package aoc.y2022.day01;
+package aoc.year2022.day01;
 
 import java.util.Scanner;
 
