@@ -17,11 +17,11 @@ class Part2 {
     }
 
     private static Character uniqueCommonChar(String firstLine, String... moreLines) {
-        Set<Character> result = chars(firstLine);
+        Set<Character> intersection = chars(firstLine);
         for (String line : moreLines) {
-            result.retainAll(chars(line));
+            intersection.retainAll(chars(line));
         }
-        return result.iterator().next();
+        return intersection.iterator().next();
     }
 
     private static Set<Character> chars(String string) {
