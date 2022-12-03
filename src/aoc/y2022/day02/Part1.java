@@ -51,7 +51,6 @@ class Part1 {
     }
 
     record Round(Choice their, Choice my) {
-
         static final Map<String, Choice> CHOICES = Map.of(
                 "A", Choice.ROCK,
                 "B", Choice.PAPER,
