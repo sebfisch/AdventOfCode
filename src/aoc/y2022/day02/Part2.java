@@ -8,13 +8,17 @@ import java.util.stream.Stream;
 
 public class Part2 {
     public static void main(String[] args) {
-        try (Stream<String> lines = new BufferedReader(new InputStreamReader(System.in)).lines()) {
+        try (Stream<String> lines = inputLines()) {
             int expectedScore = lines
                     .map(Round::parse)
                     .map(Round::score)
                     .reduce(0, (x, y) -> x + y);
             System.out.println(expectedScore);
         }
+    }
+
+    private static Stream<String> inputLines() {
+        return new BufferedReader(new InputStreamReader(System.in)).lines();
     }
 
     enum Choice {
