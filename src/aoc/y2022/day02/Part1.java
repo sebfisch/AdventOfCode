@@ -10,7 +10,7 @@ class Part1 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
             int expectedScore = lines
-                    .map(Round::parse)
+                    .map(Round::fromString)
                     .map(Round::score)
                     .reduce(0, (x, y) -> x + y);
             System.out.println(expectedScore);
@@ -60,7 +60,7 @@ class Part1 {
                 "Y", Choice.PAPER,
                 "Z", Choice.SCISSORS);
 
-        static Round parse(String line) {
+        static Round fromString(String line) {
             String[] codes = line.split(" ");
             return new Round(CHOICES.get(codes[0]), CHOICES.get(codes[1]));
         }

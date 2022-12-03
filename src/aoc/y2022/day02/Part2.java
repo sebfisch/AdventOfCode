@@ -10,7 +10,7 @@ public class Part2 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
             int expectedScore = lines
-                    .map(Round::parse)
+                    .map(Round::fromString)
                     .map(Round::score)
                     .reduce(0, (x, y) -> x + y);
             System.out.println(expectedScore);
@@ -32,7 +32,7 @@ public class Part2 {
             this.score = score;
         }
 
-        static Choice fromCode(String code) {
+        static Choice fromString(String code) {
             for (Choice choice : Choice.values()) {
                 if (choice.code.equals(code)) {
                     return choice;
@@ -62,7 +62,7 @@ public class Part2 {
             this.score = score;
         }
 
-        static Outcome fromCode(String code) {
+        static Outcome fromString(String code) {
             for (Outcome outcome : Outcome.values()) {
                 if (outcome.code.equals(code)) {
                     return outcome;
@@ -73,10 +73,9 @@ public class Part2 {
     }
 
     record Round(Choice theirChoice, Outcome suggestedOutcome) {
-
-        static Round parse(String line) {
+        static Round fromString(String line) {
             String[] codes = line.split(" ");
-            return new Round(Choice.fromCode(codes[0]), Outcome.fromCode(codes[1]));
+            return new Round(Choice.fromString(codes[0]), Outcome.fromString(codes[1]));
         }
 
         Outcome outcome(Choice myChoice) {
