@@ -9,11 +9,13 @@ import java.util.stream.Stream;
 
 public class Part1 {
     public static void main(String[] args) {
-        long mostInNeedOfConsideration = inputLines()
-                .map(SectionAssignmentPair::fromString)
-                .filter(SectionAssignmentPair::overlapsCompletely)
-                .count();
-        System.out.println(mostInNeedOfConsideration);
+        try (Stream<String> lines = inputLines()) {
+            long mostInNeedOfConsideration = lines
+                    .map(SectionAssignmentPair::fromString)
+                    .filter(SectionAssignmentPair::overlapsCompletely)
+                    .count();
+            System.out.println(mostInNeedOfConsideration);
+        }
     }
 
     private static Stream<String> inputLines() {
