@@ -86,8 +86,8 @@ public class Part2 {
         private static List<String> linesUntilEmpty(Scanner input) {
             String line = input.nextLine();
 
-            // skip first line, if it is empty
-            if (line.trim().isEmpty()) {
+            // skip initial empty lines
+            while (line.trim().isEmpty()) {
                 line = input.nextLine();
             }
 
