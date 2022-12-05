@@ -1,4 +1,4 @@
-# AdventOfCode
+# Advent of Code
 
 My solutions for (some) [Advent of Code](https://adventofcode.com) tasks
 
