@@ -1,4 +1,4 @@
-package aoc.year2022.day03;
+package year2022.day03;
 
 import java.util.HashSet;
 import java.util.Scanner;

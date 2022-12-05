@@ -1,19 +1,18 @@
-package aoc.year2022.day04;
+package year2022.day04;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Part2 {
+public class Part1 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
             long mostInNeedOfConsideration = lines
                     .map(SectionAssignmentPair::fromString)
-                    .filter(SectionAssignmentPair::overlaps)
+                    .filter(SectionAssignmentPair::overlapsCompletely)
                     .count();
             System.out.println(mostInNeedOfConsideration);
         }
@@ -29,8 +28,8 @@ public class Part2 {
             return new SectionAssignmentPair(range(assignments[0]), range(assignments[1]));
         }
 
-        boolean overlaps() {
-            return !intersection(fst, snd).isEmpty();
+        boolean overlapsCompletely() {
+            return isSubset(fst, snd) || isSubset(snd, fst);
         }
 
         private static Set<Integer> range(String description) {
@@ -41,10 +40,8 @@ public class Part2 {
                     .collect(Collectors.toSet());
         }
 
-        private static <T> Set<T> intersection(Set<T> fstSet, Set<T> sndSet) {
-            Set<T> result = new HashSet<>(fstSet);
-            result.retainAll(sndSet);
-            return result;
+        private static <T> boolean isSubset(Set<T> smallSet, Set<T> largeSet) {
+            return smallSet.stream().allMatch(largeSet::contains);
         }
     }
 }

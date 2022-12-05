@@ -1,4 +1,4 @@
-package aoc.year2022.day05;
+package year2022.day05;
 
 import java.util.ArrayList;
 import java.util.List;
