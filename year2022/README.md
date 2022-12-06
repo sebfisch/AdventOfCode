@@ -7,4 +7,4 @@
  1. Stack operations. Uses the [Dequeue](https://download.java.net/java/early_access/panama/docs/api/java.base/java/util/Deque.html) interface to build and manipulate stacks and a hand-written parser for an interesting input format.
  1. Ring Buffers. Uses the [collections framework] to implement a [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer) and check its contents for duplicates.
 
-[collections framework](https://docs.oracle.com/javase/tutorial/collections/index.html)
+[collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
