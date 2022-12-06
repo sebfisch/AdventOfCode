@@ -16,10 +16,10 @@ public class Part1 {
         try (Reader input = new InputStreamReader(System.in)) {
             long numberOfCharsRead = 0;
             RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
-            int nextInt;
-            while ((nextInt = input.read()) != -1) {
+            int next;
+            while ((next = input.read()) != -1) {
                 numberOfCharsRead++;
-                buffer.add(nextInt);
+                buffer.add(next);
                 if (Set.copyOf(buffer.contents()).size() == MARKER_SIZE) {
                     System.out.println(numberOfCharsRead);
                     break;
