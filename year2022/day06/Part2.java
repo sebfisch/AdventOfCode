@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Part2 {
@@ -19,7 +20,7 @@ public class Part2 {
             while ((nextInt = input.read()) != -1) {
                 buffer.add(nextInt);
                 numberOfCharsRead++;
-                if (buffer.uniqueElements().size() == MARKER_SIZE) {
+                if (Set.copyOf(buffer.contents()).size() == MARKER_SIZE) {
                     System.out.println(numberOfCharsRead);
                     break;
                 }
@@ -30,7 +31,7 @@ public class Part2 {
 
     static class RingBuffer<E> {
         private final int capacity;
-        private final ArrayList<E> contents;
+        private final List<E> contents;
         private int nextIndex;
 
         RingBuffer(int capacity) {
@@ -39,8 +40,8 @@ public class Part2 {
             nextIndex = 0;
         }
 
-        Set<E> uniqueElements() {
-            return Set.copyOf(contents);
+        List<E> contents() {
+            return contents;
         }
 
         void add(E elem) {
