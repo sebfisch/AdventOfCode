@@ -14,7 +14,7 @@ public class Part2 {
 
     // from here on identical to part 1
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try (Reader input = new InputStreamReader(System.in)) {
             long numberOfCharsRead = 0;
             RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
@@ -27,7 +27,6 @@ public class Part2 {
                     break;
                 }
             }
-        } catch (IOException e) {
         }
     }
 

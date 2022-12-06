@@ -12,7 +12,7 @@ import java.util.Set;
 public class Part1 {
     private static final int MARKER_SIZE = 4;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try (Reader input = new InputStreamReader(System.in)) {
             long numberOfCharsRead = 0;
             RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
@@ -25,7 +25,6 @@ public class Part1 {
                     break;
                 }
             }
-        } catch (IOException e) {
         }
     }
 
