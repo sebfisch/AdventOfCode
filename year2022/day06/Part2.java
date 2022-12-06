@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -42,7 +43,7 @@ public class Part2 {
         }
 
         Collection<E> contents() {
-            return contents;
+            return Collections.unmodifiableCollection(contents);
         }
 
         void add(E elem) {
