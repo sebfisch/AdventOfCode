@@ -18,8 +18,8 @@ public class Part1 {
             RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
             int nextInt;
             while ((nextInt = input.read()) != -1) {
-                buffer.add(nextInt);
                 numberOfCharsRead++;
+                buffer.add(nextInt);
                 if (Set.copyOf(buffer.contents()).size() == MARKER_SIZE) {
                     System.out.println(numberOfCharsRead);
                     break;
