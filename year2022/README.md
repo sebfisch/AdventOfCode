@@ -1,4 +1,4 @@
-# Java solutions for 2022
+# Java solutions for Advent of Code 2022
 
  1. Reads input lines using a [Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) (closed by a [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement) implementing an [online selection algorithm](https://en.m.wikipedia.org/wiki/Selection_algorithm#Online_selection_algorithm).
  1. Uses the [Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html) API to read input lines and defines [enum](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) and [record](https://openjdk.org/jeps/395) types to represent aspects of the game rock, paper, scissors.
