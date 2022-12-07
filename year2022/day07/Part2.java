@@ -50,9 +50,9 @@ public class Part2 {
 
     private static List<String> fullPaths(List<String> path) {
         List<String> result = new ArrayList<>();
-        for (int pathNr = 1; pathNr <= path.size(); pathNr++) {
+        for (int count = 1; count <= path.size(); count++) {
             result.add(path
-                    .subList(0, pathNr)
+                    .subList(0, count)
                     .stream()
                     .collect(Collectors.joining("/")));
         }
