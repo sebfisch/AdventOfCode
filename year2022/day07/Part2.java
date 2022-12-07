@@ -1,6 +1,7 @@
 package year2022.day07;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,8 +9,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Part1 {
-    private static final int MAX_SIZE = 100000;
+public class Part2 {
+    private static final int TOTAL_SPACE = 70000000;
+    private static final int REQUIRED_SPACE = 30000000;
 
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
@@ -36,10 +38,13 @@ public class Part1 {
                     }
                 }
             }
-            int sumOfSmallSizes = dirSizes.values().stream()
-                    .filter(size -> size <= MAX_SIZE)
-                    .reduce(0, (x, y) -> x + y);
-            System.out.println(sumOfSmallSizes);
+            int freeSpace = TOTAL_SPACE - dirSizes.get("/");
+            int spaceToFreeUp = REQUIRED_SPACE - freeSpace;
+            int smallestBigEnoughSpace = dirSizes.values().stream()
+                    .filter(size -> size >= spaceToFreeUp)
+                    .min(Comparator.naturalOrder())
+                    .orElseThrow();
+            System.out.println(smallestBigEnoughSpace);
         }
     }
 
