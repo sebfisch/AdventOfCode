@@ -6,6 +6,6 @@
  1. Uses operations from the [collections framework] to implement set intersection and inclusion.
  1. Uses the [Dequeue](https://download.java.net/java/early_access/panama/docs/api/java.base/java/util/Deque.html) interface to build and manipulate stacks and a hand-written parser for an interesting input format.
  1. Uses the [collections framework] to implement a [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer) and check its contents for duplicates.
- 1. Handles lines from a terminal session in a loop with `continue` statements and accumulates files sizes using an interesting method on maps. 
+ 1. Handles lines from a terminal session in a loop with `continue` statements and accumulates files sizes using `merge` on maps. 
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
