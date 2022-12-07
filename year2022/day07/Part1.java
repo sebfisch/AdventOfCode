@@ -32,7 +32,7 @@ public class Part1 {
                 if (!line.startsWith("dir")) {
                     for (String dir : fullPaths(currentPath)) {
                         int size = Integer.parseInt(line.split(" ")[0]);
-                        dirSizes.compute(dir, (key, val) -> size + (val == null ? 0 : val));
+                        dirSizes.merge(dir, size, (x, y) -> x + y);
                     }
                 }
             }
