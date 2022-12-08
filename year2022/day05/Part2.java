@@ -57,33 +57,21 @@ public class Part2 {
             stacks.get(step.target - 1).addAll(stacks.get(step.source - 1).removeLast(step.count));
         }
 
+        // from here on identical to part 1
+
         static Arrangement parse(Scanner input) {
             List<String> lines = linesUntilEmpty(input);
             int stackCount = numberOfStacks(lines); // removes last line
             List<CrateStack> stacks = emptyStacks(stackCount);
 
             for (String line : lines) {
-                for (int stackIndex = 0; stackIndex < stackCount; stackIndex++) {
-                    char crateId = line.charAt(1 + 4 * stackIndex);
-                    if (!Character.isWhitespace(crateId)) {
-                        stacks.get(stackIndex).addFirst(crateId);
-                    }
-                }
+                addCrates(stackCount, stacks, line);
             }
 
             return new Arrangement(stacks);
         }
 
-        private static int numberOfStacks(List<String> lines) {
-            String[] stackIds = lines.remove(lines.size() - 1).trim().split(" ");
-            return Integer.parseInt(stackIds[stackIds.length - 1]);
-        }
-
-        private static List<CrateStack> emptyStacks(int stackCount) {
-            return Stream.generate(CrateStack::new).limit(stackCount).toList();
-        }
-
-        private static List<String> linesUntilEmpty(Scanner input) {
+        static List<String> linesUntilEmpty(Scanner input) {
             String line = input.nextLine();
 
             // skip initial empty lines
@@ -98,6 +86,24 @@ public class Part2 {
             }
 
             return lines;
+        }
+
+        static int numberOfStacks(List<String> lines) {
+            String[] stackIds = lines.remove(lines.size() - 1).trim().split(" ");
+            return Integer.parseInt(stackIds[stackIds.length - 1]);
+        }
+
+        static List<CrateStack> emptyStacks(int stackCount) {
+            return Stream.generate(CrateStack::new).limit(stackCount).toList();
+        }
+
+        static void addCrates(int stackCount, List<CrateStack> stacks, String line) {
+            for (int stackIndex = 0; stackIndex < stackCount; stackIndex++) {
+                char crateId = line.charAt(1 + 4 * stackIndex);
+                if (!Character.isWhitespace(crateId)) {
+                    stacks.get(stackIndex).addFirst(crateId);
+                }
+            }
         }
     }
 }
