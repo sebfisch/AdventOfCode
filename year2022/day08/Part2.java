@@ -10,20 +10,18 @@ import java.util.stream.Stream;
 public class Part2 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            printHighestScenicScore(lines);
+            System.out.println(highestScenicScore(lines));
         }
     }
 
-    static void printHighestScenicScore(Stream<String> lines) {
+    static int highestScenicScore(Stream<String> lines) {
         Forest forest = new Forest(lines.toList());
 
-        int highestScore = forest
+        return forest
                 .treePositions()
                 .map(forest::scenicScore)
                 .max(Comparator.naturalOrder())
                 .orElseThrow();
-
-        System.out.println(highestScore);
     }
 
     enum Direction {
@@ -39,9 +37,6 @@ public class Part2 {
                 case WEST -> new Position(x - 1, y);
             };
         }
-    }
-
-    record ScoredTree(Position pos, int scenicScore) {
     }
 
     static class Forest {
@@ -80,13 +75,13 @@ public class Part2 {
             int result = 1;
 
             for (Direction direction : Direction.values()) {
-                result *= directionScore(here, direction);
+                result *= viewingDistance(here, direction);
             }
 
             return result;
         }
 
-        int directionScore(Position here, Direction direction) {
+        int viewingDistance(Position here, Direction direction) {
             int result = 0;
             Position visible = here.next(direction);
             while (contains(visible)) {

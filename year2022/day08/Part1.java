@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 public class Part1 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            printVisibleTreeCount(lines);
+            System.out.println(visibleTreeCount(lines));
         }
     }
 
-    static void printVisibleTreeCount(Stream<String> lines) {
+    static int visibleTreeCount(Stream<String> lines) {
         Forest forest = new Forest(lines.toList());
         Set<Position> visible = new HashSet<>();
 
@@ -23,7 +23,7 @@ public class Part1 {
             visible.addAll(forest.visibleFrom(direction));
         }
 
-        System.out.println(visible.size());
+        return visible.size();
     }
 
     enum Direction {
