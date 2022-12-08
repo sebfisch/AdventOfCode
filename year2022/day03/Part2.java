@@ -7,16 +7,20 @@ import java.util.Set;
 class Part2 {
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            int totalPriorities = 0;
-            while (input.hasNext()) {
-                char badge = uniqueCommonChar(input.nextLine(), input.nextLine(), input.nextLine());
-                totalPriorities += priority(badge);
-            }
-            System.out.println(totalPriorities);
+            System.out.println(totalPriorities(input));
         }
     }
 
-    private static Character uniqueCommonChar(String firstLine, String... moreLines) {
+    static int totalPriorities(Scanner input) {
+        int totalPriorities = 0;
+        while (input.hasNext()) {
+            char badge = uniqueCommonChar(input.nextLine(), input.nextLine(), input.nextLine());
+            totalPriorities += priority(badge);
+        }
+        return totalPriorities;
+    }
+
+    static Character uniqueCommonChar(String firstLine, String... moreLines) {
         Set<Character> intersection = chars(firstLine);
         for (String line : moreLines) {
             intersection.retainAll(chars(line));
@@ -24,7 +28,7 @@ class Part2 {
         return intersection.iterator().next();
     }
 
-    private static Set<Character> chars(String string) {
+    static Set<Character> chars(String string) {
         Set<Character> result = new HashSet<>();
         for (int index = 0; index < string.length(); index++) {
             result.add(string.charAt(index));
@@ -32,7 +36,7 @@ class Part2 {
         return result;
     }
 
-    private static int priority(char item) {
+    static int priority(char item) {
         if (Character.isLowerCase(item)) {
             return (int) item - (int) 'a' + 1;
         }
