@@ -14,22 +14,24 @@ public class Part1 {
 
     public static void main(String[] args) throws IOException {
         try (Reader input = new InputStreamReader(System.in)) {
-            printCharacterCountUntilMarker(input);
+            System.out.println(characterCountUntilMarker(input));
         }
     }
 
-    private static void printCharacterCountUntilMarker(Reader input) throws IOException {
+    static long characterCountUntilMarker(Reader input) throws IOException {
         long numberOfCharsRead = 0;
         RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
+
         int next;
         while ((next = input.read()) != -1) {
             numberOfCharsRead++;
             buffer.add(next);
             if (Set.copyOf(buffer.contents()).size() == MARKER_SIZE) {
-                System.out.println(numberOfCharsRead);
-                break;
+                return numberOfCharsRead;
             }
         }
+
+        throw new IllegalStateException("no marker found");
     }
 
     static class RingBuffer<E> {
