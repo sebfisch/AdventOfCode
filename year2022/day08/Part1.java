@@ -76,22 +76,22 @@ public class Part1 {
         Set<Position> visibleFrom(Direction direction) {
             Set<Position> result = new HashSet<>();
 
-            edge(direction).forEach(blocking -> {
-                result.addAll(visibleFromTree(blocking, direction.opposite()));
+            edge(direction).forEach(pos -> {
+                result.addAll(visibleFromTree(pos, direction.opposite()));
             });
 
             return result;
         }
 
-        Set<Position> visibleFromTree(Position blocking, Direction direction) {
+        Set<Position> visibleFromTree(Position highest, Direction direction) {
             Set<Position> result = new HashSet<>();
-            result.add(blocking);
+            result.add(highest);
 
-            Position current = blocking.next(direction);
-            while (height(blocking) < 9 && contains(current)) {
-                if (height(current) > height(blocking)) {
-                    result.add(current);
-                    blocking = current;
+            Position current = highest.next(direction);
+            while (height(highest) < 9 && contains(current)) {
+                if (height(current) > height(highest)) {
+                    highest = current;
+                    result.add(highest);
                 } else {
                     current = current.next(direction);
                 }
