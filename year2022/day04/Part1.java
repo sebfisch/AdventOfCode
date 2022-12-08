@@ -10,16 +10,15 @@ import java.util.stream.Stream;
 public class Part1 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            long mostInNeedOfConsideration = lines
-                    .map(SectionAssignmentPair::fromString)
-                    .filter(SectionAssignmentPair::overlapsCompletely)
-                    .count();
-            System.out.println(mostInNeedOfConsideration);
+            System.out.println(mostInNeedOfConsideration(lines));
         }
     }
 
-    private static Stream<String> inputLines() {
-        return new BufferedReader(new InputStreamReader(System.in)).lines();
+    static long mostInNeedOfConsideration(Stream<String> lines) {
+        return lines
+                .map(SectionAssignmentPair::fromString)
+                .filter(SectionAssignmentPair::overlapsCompletely)
+                .count();
     }
 
     record SectionAssignmentPair(Set<Integer> fst, Set<Integer> snd) {
@@ -32,7 +31,7 @@ public class Part1 {
             return isSubset(fst, snd) || isSubset(snd, fst);
         }
 
-        private static Set<Integer> range(String description) {
+        static Set<Integer> range(String description) {
             String[] bounds = description.split("-");
             return IntStream
                     .range(Integer.parseInt(bounds[0]), Integer.parseInt(bounds[1]) + 1)
@@ -40,8 +39,12 @@ public class Part1 {
                     .collect(Collectors.toSet());
         }
 
-        private static <T> boolean isSubset(Set<T> smallSet, Set<T> largeSet) {
+        static <T> boolean isSubset(Set<T> smallSet, Set<T> largeSet) {
             return smallSet.stream().allMatch(largeSet::contains);
         }
+    }
+
+    static Stream<String> inputLines() {
+        return new BufferedReader(new InputStreamReader(System.in)).lines();
     }
 }

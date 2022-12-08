@@ -11,16 +11,15 @@ import java.util.stream.Stream;
 public class Part2 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            long mostInNeedOfConsideration = lines
-                    .map(SectionAssignmentPair::fromString)
-                    .filter(SectionAssignmentPair::overlaps)
-                    .count();
-            System.out.println(mostInNeedOfConsideration);
+            System.out.println(mostInNeedOfConsideration(lines));
         }
     }
 
-    private static Stream<String> inputLines() {
-        return new BufferedReader(new InputStreamReader(System.in)).lines();
+    static long mostInNeedOfConsideration(Stream<String> lines) {
+        return lines
+                .map(SectionAssignmentPair::fromString)
+                .filter(SectionAssignmentPair::overlaps)
+                .count();
     }
 
     record SectionAssignmentPair(Set<Integer> fst, Set<Integer> snd) {
@@ -33,7 +32,7 @@ public class Part2 {
             return !intersection(fst, snd).isEmpty();
         }
 
-        private static Set<Integer> range(String description) {
+        static Set<Integer> range(String description) {
             String[] bounds = description.split("-");
             return IntStream
                     .range(Integer.parseInt(bounds[0]), Integer.parseInt(bounds[1]) + 1)
@@ -41,10 +40,14 @@ public class Part2 {
                     .collect(Collectors.toSet());
         }
 
-        private static <T> Set<T> intersection(Set<T> fstSet, Set<T> sndSet) {
+        static <T> Set<T> intersection(Set<T> fstSet, Set<T> sndSet) {
             Set<T> result = new HashSet<>(fstSet);
             result.retainAll(sndSet);
             return result;
         }
+    }
+
+    static Stream<String> inputLines() {
+        return new BufferedReader(new InputStreamReader(System.in)).lines();
     }
 }
