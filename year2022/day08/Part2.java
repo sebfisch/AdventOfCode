@@ -83,6 +83,7 @@ public class Part2 {
 
         int viewingDistance(Position here, Direction direction) {
             int result = 0;
+
             Position visible = here.next(direction);
             while (contains(visible)) {
                 result++;
@@ -91,6 +92,7 @@ public class Part2 {
                 }
                 visible = visible.next(direction);
             }
+
             return result;
         }
     }
