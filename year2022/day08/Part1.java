@@ -11,30 +11,19 @@ import java.util.stream.Stream;
 public class Part1 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            Forest forest = new Forest(lines.toList());
-            Set<Position> visible = new HashSet<>();
-
-            for (Direction direction : Direction.values()) {
-                addVisibleFrom(forest, visible, direction);
-            }
-
-            System.out.println(visible.size());
+            printVisibleTreeCount(lines);
         }
     }
 
-    static void addVisibleFrom(Forest forest, Set<Position> visible, Direction direction) {
-        forest.edge(direction).forEach(blocking -> {
-            visible.add(blocking);
-            Position current = blocking.next(direction.opposite());
-            while (forest.height(blocking) < 9 && forest.contains(current)) {
-                if (forest.height(current) > forest.height(blocking)) {
-                    visible.add(current);
-                    blocking = current;
-                } else {
-                    current = current.next(direction.opposite());
-                }
-            }
-        });
+    static void printVisibleTreeCount(Stream<String> lines) {
+        Forest forest = new Forest(lines.toList());
+        Set<Position> visible = new HashSet<>();
+
+        for (Direction direction : Direction.values()) {
+            visible.addAll(forest.visibleFrom(direction));
+        }
+
+        System.out.println(visible.size());
     }
 
     enum Direction {
@@ -82,6 +71,33 @@ public class Part1 {
 
         boolean contains(Position pos) {
             return 0 <= pos.x && pos.x < width() && 0 <= pos.y && pos.y < length();
+        }
+
+        Set<Position> visibleFrom(Direction direction) {
+            Set<Position> result = new HashSet<>();
+
+            edge(direction).forEach(blocking -> {
+                result.addAll(visibleFromTree(blocking, direction.opposite()));
+            });
+
+            return result;
+        }
+
+        Set<Position> visibleFromTree(Position blocking, Direction direction) {
+            Set<Position> result = new HashSet<>();
+            result.add(blocking);
+
+            Position current = blocking.next(direction);
+            while (height(blocking) < 9 && contains(current)) {
+                if (height(current) > height(blocking)) {
+                    result.add(current);
+                    blocking = current;
+                } else {
+                    current = current.next(direction);
+                }
+            }
+
+            return result;
         }
 
         Stream<Position> edge(Direction direction) {

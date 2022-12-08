@@ -10,16 +10,20 @@ import java.util.stream.Stream;
 public class Part2 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            Forest forest = new Forest(lines.toList());
-
-            int highestScore = forest
-                    .treePositions()
-                    .map(forest::scenicScore)
-                    .max(Comparator.naturalOrder())
-                    .orElseThrow();
-
-            System.out.println(highestScore);
+            printHighestScenicScore(lines);
         }
+    }
+
+    static void printHighestScenicScore(Stream<String> lines) {
+        Forest forest = new Forest(lines.toList());
+
+        int highestScore = forest
+                .treePositions()
+                .map(forest::scenicScore)
+                .max(Comparator.naturalOrder())
+                .orElseThrow();
+
+        System.out.println(highestScore);
     }
 
     enum Direction {
@@ -76,18 +80,22 @@ public class Part2 {
             int result = 1;
 
             for (Direction direction : Direction.values()) {
-                int directionScore = 0;
-                Position visible = here.next(direction);
-                while (contains(visible)) {
-                    directionScore++;
-                    if (height(here) <= height(visible)) {
-                        break;
-                    }
-                    visible = visible.next(direction);
-                }
-                result *= directionScore;
+                result *= directionScore(here, direction);
             }
 
+            return result;
+        }
+
+        int directionScore(Position here, Direction direction) {
+            int result = 0;
+            Position visible = here.next(direction);
+            while (contains(visible)) {
+                result++;
+                if (height(here) <= height(visible)) {
+                    break;
+                }
+                visible = visible.next(direction);
+            }
             return result;
         }
     }
