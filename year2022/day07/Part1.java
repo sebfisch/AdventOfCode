@@ -13,18 +13,16 @@ public class Part1 {
 
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            printSmallSum(input);
+            System.out.println(smallSum(input));
         }
     }
 
-    static void printSmallSum(Scanner input) {
+    static int smallSum(Scanner input) {
         Map<String, Integer> sizes = directorySizes(input);
 
-        int sumOfSmallSizes = sizes.values().stream()
+        return sizes.values().stream()
                 .filter(size -> size <= MAX_SIZE)
                 .reduce(0, (x, y) -> x + y);
-
-        System.out.println(sumOfSmallSizes);
     }
 
     static Map<String, Integer> directorySizes(Scanner input) {
@@ -52,7 +50,7 @@ public class Part1 {
         if (line.startsWith("$ ls")) {
             return;
         }
-        
+
         if (!line.startsWith("dir")) {
             for (String dir : fullPaths(path)) {
                 int size = Integer.parseInt(line.split(" ")[0]);

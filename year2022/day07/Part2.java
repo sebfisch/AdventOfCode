@@ -15,21 +15,20 @@ public class Part2 {
 
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            printMostAppropriateDirSize(input);
+            System.out.println(mostAppropriateDirSize(input));
         }
     }
 
-    private static void printMostAppropriateDirSize(Scanner input) {
+    static int mostAppropriateDirSize(Scanner input) {
         Map<String, Integer> sizes = directorySizes(input);
 
         int freeSpace = TOTAL_SPACE - sizes.get("/");
         int spaceToFreeUp = REQUIRED_SPACE - freeSpace;
-        int smallestBigEnoughSpace = sizes.values().stream()
+
+        return sizes.values().stream()
                 .filter(size -> size >= spaceToFreeUp)
                 .min(Comparator.naturalOrder())
                 .orElseThrow();
-
-        System.out.println(smallestBigEnoughSpace);
     }
 
     // from here on identical to part 1
