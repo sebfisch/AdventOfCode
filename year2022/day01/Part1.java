@@ -5,18 +5,24 @@ import java.util.Scanner;
 class Part1 {
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            int maxCalories = 0;
-            int totalCalories = 0;
-            while (input.hasNext()) {
-                String line = input.nextLine();
-                if (line.isEmpty()) {
-                    maxCalories = Math.max(maxCalories, totalCalories);
-                    totalCalories = 0;
-                } else {
-                    totalCalories += Integer.parseInt(line);
-                }
-            }
-            System.out.println(maxCalories);
+            System.out.println(maxCalories(input));
         }
+    }
+
+    static int maxCalories(Scanner input) {
+        int result = 0;
+
+        int sum = 0;
+        while (input.hasNext()) {
+            String line = input.nextLine();
+            if (line.isEmpty()) {
+                result = Math.max(result, sum);
+                sum = 0;
+            } else {
+                sum += Integer.parseInt(line);
+            }
+        }
+
+        return result;
     }
 }

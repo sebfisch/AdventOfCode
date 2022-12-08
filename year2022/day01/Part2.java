@@ -8,19 +8,25 @@ import java.util.Scanner;
 public class Part2 {
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            Biggest maxCalories = new Biggest(3);
-            int totalCalories = 0;
-            while (input.hasNext()) {
-                String line = input.nextLine();
-                if (line.isEmpty()) {
-                    maxCalories.add(totalCalories);
-                    totalCalories = 0;
-                } else {
-                    totalCalories += Integer.parseInt(line);
-                }
-            }
-            System.out.println(maxCalories.total());
+            System.out.println(maxCalories(input).total());
         }
+    }
+
+    static Biggest maxCalories(Scanner input) {
+        Biggest result = new Biggest(3);
+
+        int sum = 0;
+        while (input.hasNext()) {
+            String line = input.nextLine();
+            if (line.isEmpty()) {
+                result.add(sum);
+                sum = 0;
+            } else {
+                sum += Integer.parseInt(line);
+            }
+        }
+
+        return result;
     }
 }
 
