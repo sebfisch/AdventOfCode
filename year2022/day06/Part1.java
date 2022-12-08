@@ -14,16 +14,20 @@ public class Part1 {
 
     public static void main(String[] args) throws IOException {
         try (Reader input = new InputStreamReader(System.in)) {
-            long numberOfCharsRead = 0;
-            RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
-            int next;
-            while ((next = input.read()) != -1) {
-                numberOfCharsRead++;
-                buffer.add(next);
-                if (Set.copyOf(buffer.contents()).size() == MARKER_SIZE) {
-                    System.out.println(numberOfCharsRead);
-                    break;
-                }
+            printCharacterCountUntilMarker(input);
+        }
+    }
+
+    private static void printCharacterCountUntilMarker(Reader input) throws IOException {
+        long numberOfCharsRead = 0;
+        RingBuffer<Integer> buffer = new RingBuffer<>(MARKER_SIZE);
+        int next;
+        while ((next = input.read()) != -1) {
+            numberOfCharsRead++;
+            buffer.add(next);
+            if (Set.copyOf(buffer.contents()).size() == MARKER_SIZE) {
+                System.out.println(numberOfCharsRead);
+                break;
             }
         }
     }
