@@ -7,11 +7,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Part2 {
+    static final int KNOT_COUNT = 10;
+
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
             System.out.println(tailVisitedCount(lines));
@@ -19,13 +19,11 @@ public class Part2 {
     }
 
     static int tailVisitedCount(Stream<String> lines) {
-        Stream<Movement> movements = lines.map(Movement::fromString);
-
         Set<Position> visitedByTail = new HashSet<>();
         visitedByTail.add(Position.START);
 
-        Rope rope = new Rope(10);
-        movements.forEach(move -> {
+        Rope rope = new Rope(KNOT_COUNT);
+        lines.map(Movement::fromString).forEachOrdered(move -> {
             visitedByTail.addAll(rope.stepwiseTailPositions(move));
         });
 
@@ -76,6 +74,7 @@ public class Part2 {
     record Movement(Direction direction, int steps) {
         static Movement fromString(String string) {
             String[] parts = string.split(" ");
+
             return new Movement(
                     Direction.fromString(parts[0]),
                     Integer.parseInt(parts[1]));
@@ -87,15 +86,9 @@ public class Part2 {
 
         Rope(int size) {
             knots = new ArrayList<>(size);
-            IntStream.range(0, size).forEach(ignored -> {
+            for (int ignored = 0; ignored < size; ignored++) {
                 knots.add(Position.START);
-            });
-        }
-
-        public String toString() {
-            return knots.stream()
-                    .map(pos -> "%s,%s".formatted(pos.x, pos.y))
-                    .collect(Collectors.joining(" "));
+            }
         }
 
         Position head() {
@@ -109,37 +102,37 @@ public class Part2 {
         Set<Position> stepwiseTailPositions(Movement move) {
             Set<Position> result = new HashSet<>();
 
-            IntStream.range(0, move.steps).forEach(ignored -> {
+            for (int ignored = 0; ignored < move.steps; ignored++) {
                 pullHead(move.direction);
                 result.add(tail());
-            });
+            }
 
             return result;
         }
 
         void pullHead(Direction dir) {
             knots.set(0, head().moved(dir));
-
             for (int index = 0; index < knots.size() - 1; index++) {
-                Position fst = knots.get(index);
-                Position snd = knots.get(index + 1);
-
-                if (fst.isAdjacentTo(snd)) {
-                    return;
-                }
-
-                // at least one of the following conditions is true (maybe both)
-
-                if (!fst.isInSameColAs(snd)) {
-                    snd = snd.moved(fst.x < snd.x ? Direction.LEFT : Direction.RIGHT);
-                    knots.set(index + 1, snd);
-                }
-
-                if (!fst.isInSameRowAs(snd)) {
-                    snd = snd.moved(fst.y < snd.y ? Direction.UP : Direction.DOWN);
-                    knots.set(index + 1, snd);
-                }
+                knots.set(index + 1, pullNext(knots.get(index), knots.get(index + 1)));
             }
+        }
+
+        Position pullNext(Position fst, Position snd) {
+            if (fst.isAdjacentTo(snd)) {
+                return snd;
+            }
+
+            // at least one of the following conditions is true (maybe both)
+
+            if (!fst.isInSameColAs(snd)) {
+                snd = snd.moved(fst.x < snd.x ? Direction.LEFT : Direction.RIGHT);
+            }
+
+            if (!fst.isInSameRowAs(snd)) {
+                snd = snd.moved(fst.y < snd.y ? Direction.UP : Direction.DOWN);
+            }
+
+            return snd;
         }
     }
 

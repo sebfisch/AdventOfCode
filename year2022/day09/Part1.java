@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Part1 {
@@ -16,13 +15,11 @@ public class Part1 {
     }
 
     static int tailVisitedCount(Stream<String> lines) {
-        Stream<Movement> movements = lines.map(Movement::fromString);
-
         Set<Position> visitedByTail = new HashSet<>();
         visitedByTail.add(Position.START);
 
         Rope rope = new Rope();
-        movements.forEach(move -> {
+        lines.map(Movement::fromString).forEachOrdered(move -> {
             visitedByTail.addAll(rope.stepwiseTailPositions(move));
         });
 
@@ -73,6 +70,7 @@ public class Part1 {
     record Movement(Direction direction, int steps) {
         static Movement fromString(String string) {
             String[] parts = string.split(" ");
+
             return new Movement(
                     Direction.fromString(parts[0]),
                     Integer.parseInt(parts[1]));
@@ -91,30 +89,35 @@ public class Part1 {
         Set<Position> stepwiseTailPositions(Movement move) {
             Set<Position> result = new HashSet<>();
 
-            IntStream.range(0, move.steps).forEach(ignored -> {
+            for (int ignored = 0; ignored < move.steps; ignored++) {
                 pullHead(move.direction);
                 result.add(tail);
-            });
+            }
 
             return result;
         }
 
         void pullHead(Direction dir) {
             head = head.moved(dir);
+            tail = pullNext(head, tail);
+        }
 
-            if (head.isAdjacentTo(tail)) {
-                return;
+        Position pullNext(Position fst, Position snd) {
+            if (fst.isAdjacentTo(snd)) {
+                return snd;
             }
 
             // at least one of the following conditions is true (maybe both)
 
-            if (!head.isInSameColAs(tail)) {
-                tail = tail.moved(head.x < tail.x ? Direction.LEFT : Direction.RIGHT);
+            if (!fst.isInSameColAs(snd)) {
+                snd = snd.moved(fst.x < snd.x ? Direction.LEFT : Direction.RIGHT);
             }
 
-            if (!head.isInSameRowAs(tail)) {
-                tail = tail.moved(head.y < tail.y ? Direction.UP : Direction.DOWN);
+            if (!fst.isInSameRowAs(snd)) {
+                snd = snd.moved(fst.y < snd.y ? Direction.UP : Direction.DOWN);
             }
+
+            return snd;
         }
     }
 
