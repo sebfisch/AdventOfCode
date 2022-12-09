@@ -2,9 +2,9 @@ package year2022.day08;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -17,13 +17,11 @@ public class Part1 {
 
     static int visibleTreeCount(Stream<String> lines) {
         Forest forest = new Forest(lines.toList());
-        Set<Position> visible = new HashSet<>();
 
-        for (Direction direction : Direction.values()) {
-            visible.addAll(forest.visibleFrom(direction));
-        }
-
-        return visible.size();
+        return Arrays.stream(Direction.values())
+                .flatMap(forest::visibleFrom)
+                .collect(Collectors.toSet())
+                .size();
     }
 
     enum Direction {
@@ -73,31 +71,25 @@ public class Part1 {
             return 0 <= pos.x && pos.x < width() && 0 <= pos.y && pos.y < length();
         }
 
-        Set<Position> visibleFrom(Direction direction) {
-            Set<Position> result = new HashSet<>();
-
-            edge(direction).forEach(pos -> {
-                result.addAll(visibleFromTree(pos, direction.opposite()));
-            });
-
-            return result;
+        Stream<Position> visibleFrom(Direction direction) {
+            return edge(direction).flatMap(pos -> visibleFromTree(pos, direction.opposite()));
         }
 
-        Set<Position> visibleFromTree(Position highest, Direction direction) {
-            Set<Position> result = new HashSet<>();
-            result.add(highest);
+        Stream<Position> visibleFromTree(Position highest, Direction direction) {
+            Stream.Builder<Position> visible = Stream.builder();
+            visible.add(highest);
 
             Position current = highest.next(direction);
             while (height(highest) < 9 && contains(current)) {
                 if (height(current) > height(highest)) {
                     highest = current;
-                    result.add(highest);
+                    visible.add(highest);
                 } else {
                     current = current.next(direction);
                 }
             }
 
-            return result;
+            return visible.build();
         }
 
         Stream<Position> edge(Direction direction) {

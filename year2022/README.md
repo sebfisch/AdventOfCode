@@ -7,7 +7,7 @@
  1. Builds and manipulates stacks with the [Dequeue](https://download.java.net/java/early_access/panama/docs/api/java.base/java/util/Deque.html) interface and defines a hand-written parser for an interesting input format.
  1. Implements a [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer) and checks its contents for duplicates with the [collections framework].
  1. Accumulates file sizes using [`merge` on maps](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html#merge(K,V,java.util.function.BiFunction)). 
- 1. Models directions and positions using [enum] and [record] types and searches in a loop with a [`break` statement](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/branch.html).
+ 1. Models directions and positions using [enum] and [record] types, constructs streams using a [stream builder](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.Builder.html), and searches in a loop with a [`break` statement](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/branch.html).
  1. Models a Snake-like simulation using [enum] and [record] types.
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html

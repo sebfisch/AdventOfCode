@@ -2,6 +2,7 @@ package year2022.day08;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -72,13 +73,9 @@ public class Part2 {
         }
 
         int scenicScore(Position here) {
-            int result = 1;
-
-            for (Direction direction : Direction.values()) {
-                result *= viewingDistance(here, direction);
-            }
-
-            return result;
+            return Arrays.stream(Direction.values())
+                    .map(direction -> viewingDistance(here, direction))
+                    .reduce(1, (x, y) -> x * y);
         }
 
         int viewingDistance(Position here, Direction direction) {
