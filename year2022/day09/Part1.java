@@ -102,7 +102,7 @@ public class Part1 {
             tail = pullNext(head, tail);
         }
 
-        Position pullNext(Position fst, Position snd) {
+        static Position pullNext(Position fst, Position snd) {
             if (fst.isAdjacentTo(snd)) {
                 return snd;
             }
