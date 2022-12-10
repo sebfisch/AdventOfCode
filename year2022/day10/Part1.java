@@ -1,29 +1,23 @@
 package year2022.day10;
 
 import java.util.Scanner;
-import java.util.Set;
 
 public class Part1 {
-    static final Set<Integer> RELEVANT_CYCLES = Set.of(
-            20, 60, 100, 140, 180, 220);
-
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            CPU cpu = new CPU(RELEVANT_CYCLES);
+            CPU cpu = new CPU();
             cpu.execute(input);
             System.out.println(cpu.signalStrength());
         }
     }
 
     static class CPU {
-        private final Set<Integer> relevantCycles;
         private int signalStrength;
         private int xRegister;
         private int cycle;
         private int delay;
 
-        CPU(Set<Integer> relevantCycles) {
-            this.relevantCycles = relevantCycles;
+        CPU() {
             this.signalStrength = 0;
             this.xRegister = 1;
             this.cycle = 0;
@@ -45,7 +39,7 @@ public class Part1 {
                     beginExecution(instruction);
                 }
 
-                if (relevantCycles.contains(cycle)) {
+                if (cycle % 40 == 20) {
                     signalStrength += cycle * xRegister;
                 }
 
