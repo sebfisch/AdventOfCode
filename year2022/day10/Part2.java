@@ -17,12 +17,12 @@ public class Part2 {
     static class CRT {
         public final int width;
         private int cursor;
-        private StringBuffer buffer;
+        private StringBuilder buffer;
 
         CRT(int width) {
             this.width = width;
             this.cursor = 0;
-            this.buffer = new StringBuffer();
+            this.buffer = new StringBuilder();
         }
 
         void drawPixel(boolean lit) {
