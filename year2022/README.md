@@ -9,7 +9,7 @@
  1. Accumulates file sizes using [`merge` on maps](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html#merge(K,V,java.util.function.BiFunction)). 
  1. Models directions and positions using [enum] and [record] types, constructs streams using a [stream builder](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.Builder.html), and searches in a loop with a [`break` statement](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/branch.html).
  1. Models a Snake-like simulation using [enum] and [record] types and implements a clever way to compute movements.
- 1. Models machine code using [algebraic datatypes](https://sebfisch.github.io/java-data/) implemented with [sealed classes](https://openjdk.org/jeps/409) and [record] types, processes instructions with [record patterns](https://openjdk.org/jeps/405), and represents a terminal using a [string buffer](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/StringBuffer.html).
+ 1. Models machine code as [algebraic datatypes](https://sebfisch.github.io/java-data/) implemented using [record] types and [sealed classes](https://openjdk.org/jeps/409) with [default methods](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html), processes instructions using [pattern matching](https://openjdk.org/jeps/427) with [record patterns](https://openjdk.org/jeps/405) in [switch expressions](https://openjdk.org/jeps/361), and represents a terminal using a [string buffer](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/StringBuffer.html).
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
 [enum]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
