@@ -63,6 +63,12 @@ public class Part1 {
     }
 
     sealed interface Instruction {
+        record NOOP() implements Instruction {
+        }
+
+        record ADDX(int n) implements Instruction {
+        }
+
         static Instruction fromString(String string) {
             String[] words = string.split(" ");
             return switch (words[0]) {
@@ -78,12 +84,6 @@ public class Part1 {
                 case NOOP() -> 1;
                 case ADDX(int n) -> 2;
             };
-        }
-
-        record NOOP() implements Instruction {
-        }
-
-        record ADDX(int n) implements Instruction {
         }
     }
 }
