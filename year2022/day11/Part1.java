@@ -122,7 +122,7 @@ public class Part1 {
 
         default int value(int old) {
             return switch (this) {
-                case Num(int value) -> value;
+                case Num(var value) -> value;
                 case Old() -> old;
                 case Plus(var fst,var snd) -> fst.value(old) + snd.value(old);
                 case Times(var fst,var snd) -> fst.value(old) * snd.value(old);
