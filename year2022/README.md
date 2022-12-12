@@ -11,6 +11,7 @@
  1. Models a Snake-like simulation using [enum] and [record] types and implements a clever way to compute movements.
  1. Models machine code as [algebraic datatypes](https://sebfisch.github.io/java-data/) implemented using [record] types and [sealed classes](https://openjdk.org/jeps/409) with [default methods](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html), processes instructions using [pattern matching](https://openjdk.org/jeps/427) with [record patterns](https://openjdk.org/jeps/405) in [switch expressions](https://openjdk.org/jeps/361), and represents a terminal using a [string builder](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/StringBuilder.html).
  1. Another example of algebraic datatypes and pattern matching simulating a game with [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic).
+ 1. Implements Dijkstra's [path-finding algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html#dijkstra) with a [priority queue](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/PriorityQueue.html).
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
 [enum]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
