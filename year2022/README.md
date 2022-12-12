@@ -1,7 +1,7 @@
 # Java solutions for Advent of Code 2022
 
  1. [Calorie Counting](https://adventofcode.com/2022/day/1): Reads input lines using a [Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) (closed by a [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement) implementing an [online selection algorithm](https://en.m.wikipedia.org/wiki/Selection_algorithm#Online_selection_algorithm).
- 1. [Rock Paper Scissors](https://adventofcode.com/2022/day/2): Reads input lines using the [Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html) API and represent aspects of the game rock, paper, scissors with [enum] and [record] types.
+ 1. [Rock Paper Scissors](https://adventofcode.com/2022/day/2): Reads input lines using the [Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html) API and represent aspects of a game with [enum] and [record] types.
  1. [Rucksack Reorganization](https://adventofcode.com/2022/day/3): Implements set intersection with the [collections framework].
  1. [Camp Cleanup](https://adventofcode.com/2022/day/4): Implements set intersection and inclusion with the [collections framework].
  1. [Supply Stacks](https://adventofcode.com/2022/day/5): Builds and manipulates stacks with the [Dequeue](https://download.java.net/java/early_access/panama/docs/api/java.base/java/util/Deque.html) interface and defines a hand-written parser for an interesting input format.
