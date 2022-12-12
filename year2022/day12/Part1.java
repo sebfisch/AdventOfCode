@@ -2,11 +2,11 @@ package year2022.day12;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.stream.Stream;
 
 public class Part1 {
@@ -76,31 +76,31 @@ public class Part1 {
             Map<Position, Integer> distances = new HashMap<>();
             distances.put(end, 0);
 
-            PriorityQueue<PathElem> frontier = new PriorityQueue<>(Comparator.comparing(PathElem::priority));
-            frontier.add(new PathElem(end, 0));
+            // Dijkstra's algorithm would be overkill because each step costs the same.
+            // A FIFO queue is used to implement breadth-first search.
+            // Part 1 could benefit from A* because there is one start and end position,
+            // but I prefer a solution that can be generalized in part 2.
+            Queue<Position> frontier = new LinkedList<>();
+            frontier.add(end);
 
-            PathElem current = null;
+            Position current = null;
             while (!frontier.isEmpty()) {
                 current = frontier.remove();
 
-                if (current.position.equals(start)) {
+                if (current.equals(start)) {
                     break;
                 }
 
-                for (Position predecessor : predecessors(current.position)) {
-                    int distance = distances.get(current.position) + 1;
-                    if (!distances.keySet().contains(predecessor) || distance < distances.get(predecessor)) {
-                        distances.put(predecessor, distance);
-                        frontier.add(new PathElem(predecessor, distance));
+                for (Position predecessor : predecessors(current)) {
+                    if (!distances.keySet().contains(predecessor)) {
+                        distances.put(predecessor, distances.get(current) + 1);
+                        frontier.add(predecessor);
                     }
                 }
             }
 
-            return distances.get(current.position);
+            return distances.get(current);
         }
-    }
-
-    record PathElem(Position position, int priority) {
     }
 
     static Stream<String> inputLines() {
