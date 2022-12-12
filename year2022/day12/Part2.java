@@ -2,7 +2,6 @@ package year2022.day12;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.stream.Stream;
 public class Part2 {
     public static void main(String[] args) {
         try (Stream<String> lines = inputLines()) {
-            System.out.println(new HeightMap(lines.toList()).shortestPath().size());
+            System.out.println(new HeightMap(lines.toList()).lengthOfShortestPath());
         }
     }
 
@@ -69,18 +68,16 @@ public class Part2 {
                     .toList();
         }
 
-        List<Position> shortestPath() {
-            return shortestPath(position('E'));
+        int lengthOfShortestPath() {
+            return lengthOfShortestPath(position('E'));
         }
 
-        List<Position> shortestPath(Position end) {
+        int lengthOfShortestPath(Position end) {
             Map<Position, Integer> distances = new HashMap<>();
             distances.put(end, 0);
 
             PriorityQueue<PathElem> frontier = new PriorityQueue<>(Comparator.comparing(PathElem::priority));
             frontier.add(new PathElem(end, 0));
-
-            Map<Position, Position> successors = new HashMap<>();
 
             PathElem current = null;
             while (!frontier.isEmpty()) {
@@ -94,21 +91,12 @@ public class Part2 {
                     int distance = distances.get(current.position) + 1;
                     if (!distances.keySet().contains(predecessor) || distance < distances.get(predecessor)) {
                         distances.put(predecessor, distance);
-                        successors.put(predecessor, current.position);
                         frontier.add(new PathElem(predecessor, distance));
                     }
                 }
             }
 
-            List<Position> path = new ArrayList<>();
-
-            Position pos = current.position;
-            while (!end.equals(pos)) {
-                path.add(pos);
-                pos = successors.get(pos);
-            }
-
-            return path;
+            return distances.get(current.position);
         }
     }
 
