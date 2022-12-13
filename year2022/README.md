@@ -1,7 +1,7 @@
 # Java solutions for Advent of Code 2022
 
- 1. [Calorie Counting](https://adventofcode.com/2022/day/1): Reads input lines using a [Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) (closed by a [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement) implementing an [online selection algorithm](https://en.m.wikipedia.org/wiki/Selection_algorithm#Online_selection_algorithm).
- 1. [Rock Paper Scissors](https://adventofcode.com/2022/day/2): Reads input lines using the [Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html) API and represent aspects of a game with [enum] and [record] types.
+ 1. [Calorie Counting](https://adventofcode.com/2022/day/1): Reads input lines using a [Scanner] (closed by a [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement) implementing an [online selection algorithm](https://en.m.wikipedia.org/wiki/Selection_algorithm#Online_selection_algorithm).
+ 1. [Rock Paper Scissors](https://adventofcode.com/2022/day/2): Reads input lines using the [Stream] API and represent aspects of a game with [enum] and [record] types.
  1. [Rucksack Reorganization](https://adventofcode.com/2022/day/3): Implements set intersection with the [collections framework].
  1. [Camp Cleanup](https://adventofcode.com/2022/day/4): Implements set intersection and inclusion with the [collections framework].
  1. [Supply Stacks](https://adventofcode.com/2022/day/5): Builds and manipulates stacks with the [Deque](https://download.java.net/java/early_access/panama/docs/api/java.base/java/util/Deque.html) interface and defines a hand-written parser for an interesting input format.
@@ -12,7 +12,10 @@
  1. [Cathode-Ray Tube](https://adventofcode.com/2022/day/10): Models machine code as [algebraic datatypes](https://sebfisch.github.io/java-data/) implemented using [record] types and [sealed classes](https://openjdk.org/jeps/409) with [default methods](https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html), processes instructions using [pattern matching](https://openjdk.org/jeps/427) with [record patterns](https://openjdk.org/jeps/405) in [switch expressions](https://openjdk.org/jeps/361), and represents a terminal using a [StringBuilder](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/StringBuilder.html).
  1. [Monkey in the Middle](https://adventofcode.com/2022/day/11): Another example of algebraic datatypes and pattern matching simulating a game involving [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic).
  1. [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12): Implements a [path finding](https://www.redblobgames.com/pathfinding/) algorithm with a [Queue](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Queue.html).
+ 1. [Distress Signal](https://adventofcode.com/2022/day/13): Parses nested data using predictive [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser) based on a [Scanner], compares generated data lexicographically with [pattern matching for `instanceof`](https://openjdk.org/jeps/394), and processes it using the [Stream] API.
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
 [enum]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
 [record]: https://openjdk.org/jeps/395
+[Scanner]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html
+[Stream]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html
