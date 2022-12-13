@@ -3,6 +3,7 @@ CMD bash --login
 
 RUN apt-get update && \
   apt-get install -y \
+  gawk
   git
 
 ARG USER=me

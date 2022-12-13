@@ -19,3 +19,32 @@
 [record]: https://openjdk.org/jeps/395
 [Scanner]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html
 [Stream]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html
+
+## Import Counts
+
+| Count | Import |
+| ----: | ------ |
+| 16 | [java.util.List](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html) |
+| 14 | [java.io.InputStreamReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/InputStreamReader.html) |
+| 14 | [java.util.stream.Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.html) |
+| 13 | [java.util.Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) |
+| 12 | [java.io.BufferedReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/BufferedReader.html) |
+| 10 | [java.util.ArrayList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/ArrayList.html) |
+| 8 | [java.util.LinkedList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/LinkedList.html) |
+| 8 | [java.util.Map](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html) |
+| 8 | [java.util.Set](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Set.html) |
+| 7 | [java.util.Collections](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collections.html) |
+| 7 | [java.util.stream.Collectors](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Collectors.html) |
+| 6 | [java.util.Arrays](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Arrays.html) |
+| 6 | [java.util.HashMap](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashMap.html) |
+| 5 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
+| 5 | [java.util.stream.IntStream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/IntStream.html) |
+| 2 | [java.io.IOException](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/IOException.html) |
+| 2 | [java.io.Reader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/Reader.html) |
+| 2 | [java.util.Collection](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collection.html) |
+| 2 | [java.util.Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) |
+| 2 | [java.util.Deque](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Deque.html) |
+| 2 | [java.util.Iterator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Iterator.html) |
+| 2 | [java.util.Objects](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Objects.html) |
+| 2 | [java.util.Queue](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Queue.html) |
+| 1 | [java.util.ArrayDeque](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/ArrayDeque.html) |
