@@ -13,6 +13,7 @@
  1. [Monkey in the Middle](https://adventofcode.com/2022/day/11): Another example of algebraic datatypes and pattern matching simulating a game involving [modular arithmetic](https://en.wikipedia.org/wiki/Modular_arithmetic).
  1. [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12): Implements a [path finding](https://www.redblobgames.com/pathfinding/) algorithm with a [Queue](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Queue.html).
  1. [Distress Signal](https://adventofcode.com/2022/day/13): Parses nested data using predictive [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser) based on a [Scanner], compares generated data lexicographically with [pattern matching for `instanceof`](https://openjdk.org/jeps/394), and processes it using the [Stream] API.
+ 1. [Regolith Reservoir](https://adventofcode.com/2022/day/14): Simulates falling objects and manages their positions using the [collections framework].
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
 [enum]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
@@ -24,25 +25,25 @@
 
 | Count | Import |
 | ----: | ------ |
-| 16 | [java.util.List](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html) |
-| 14 | [java.io.InputStreamReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/InputStreamReader.html) |
-| 14 | [java.util.stream.Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.html) |
+| 18 | [java.util.List](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html) |
+| 16 | [java.io.InputStreamReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/InputStreamReader.html) |
+| 16 | [java.util.stream.Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.html) |
+| 14 | [java.io.BufferedReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/BufferedReader.html) |
 | 13 | [java.util.Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) |
-| 12 | [java.io.BufferedReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/BufferedReader.html) |
 | 10 | [java.util.ArrayList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/ArrayList.html) |
-| 8 | [java.util.LinkedList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/LinkedList.html) |
+| 10 | [java.util.LinkedList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/LinkedList.html) |
+| 10 | [java.util.Set](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Set.html) |
 | 8 | [java.util.Map](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html) |
-| 8 | [java.util.Set](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Set.html) |
 | 7 | [java.util.Collections](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collections.html) |
+| 7 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
 | 7 | [java.util.stream.Collectors](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Collectors.html) |
 | 6 | [java.util.Arrays](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Arrays.html) |
 | 6 | [java.util.HashMap](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashMap.html) |
-| 5 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
 | 5 | [java.util.stream.IntStream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/IntStream.html) |
+| 4 | [java.util.Collection](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collection.html) |
+| 4 | [java.util.Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) |
 | 2 | [java.io.IOException](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/IOException.html) |
 | 2 | [java.io.Reader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/Reader.html) |
-| 2 | [java.util.Collection](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collection.html) |
-| 2 | [java.util.Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) |
 | 2 | [java.util.Deque](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Deque.html) |
 | 2 | [java.util.Iterator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Iterator.html) |
 | 2 | [java.util.Objects](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Objects.html) |
