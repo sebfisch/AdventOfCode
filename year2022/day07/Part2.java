@@ -1,6 +1,5 @@
 package year2022.day07;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Part2 {
     private static final int TOTAL_SPACE = 70000000;
@@ -60,21 +61,16 @@ public class Part2 {
         }
 
         if (!line.startsWith("dir")) {
-            for (String dir : fullPaths(path)) {
-                int size = Integer.parseInt(line.split(" ")[0]);
-                sizes.merge(dir, size, (x, y) -> x + y);
-            }
+            int size = Integer.parseInt(line.split(" ")[0]);
+            fullPaths(path).forEach(dir -> sizes.merge(dir, size, (x, y) -> x + y));
         }
     }
 
-    static List<String> fullPaths(List<String> path) {
-        List<String> result = new ArrayList<>();
-        for (int count = 1; count <= path.size(); count++) {
-            result.add(path
-                    .subList(0, count)
-                    .stream()
-                    .collect(Collectors.joining("/")));
-        }
-        return result;
+    static Stream<String> fullPaths(List<String> path) {
+        return IntStream
+                .range(1, path.size() + 1)
+                .mapToObj(count -> path.subList(0, count))
+                .map(List::stream)
+                .map(s -> s.collect(Collectors.joining("/")));
     }
 }

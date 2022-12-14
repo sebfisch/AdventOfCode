@@ -1,7 +1,7 @@
 package year2022.day05;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -31,7 +31,7 @@ public class Part1 {
         }
     }
 
-    static class CrateStack extends ArrayDeque<Character> {
+    static class CrateStack extends LinkedList<Character> {
     }
 
     record Arrangement(List<CrateStack> stacks) {
