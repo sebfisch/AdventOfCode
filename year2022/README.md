@@ -21,7 +21,9 @@
 [Scanner]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html
 [Stream]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html
 
-## Recent Extensions
+## Usage Statistics
+
+### Recent Extensions
 
 | Count | Extension |
 | ----: | --------- |
@@ -32,7 +34,7 @@
 | 4 | [Pattern Matching for switch (Third Preview)](https://openjdk.org/jeps/427) |
 | 2 | [Pattern Matching for instanceof](https://openjdk.org/jeps/394) |
 
-## Imports
+### Imports
 
 | Count | Import |
 | ----: | ------ |

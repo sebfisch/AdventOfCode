@@ -2,7 +2,9 @@
 
 cat <<EOF
 
-## Recent Extensions
+## Usage Statistics
+
+### Recent Extensions
 
 | Count | Extension |
 | ----: | --------- |
@@ -19,7 +21,7 @@ find . -name "*.java" \
 
 cat <<EOF
 
-## Imports
+### Imports
 
 | Count | Import |
 | ----: | ------ |
