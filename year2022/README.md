@@ -23,6 +23,8 @@
 
 ## Usage Statistics
 
+The tables below list the number of source files using certain extensions and imports.
+
 ### Recent Extensions
 
 | Count | Extension |
