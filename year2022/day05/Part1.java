@@ -1,11 +1,12 @@
 package year2022.day05;
 
+// JEP 395: Records
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Part1 {
@@ -43,9 +44,9 @@ public class Part1 {
         }
 
         void moveOneAtATime(Step step) {
-            IntStream.range(0, step.count).forEach(ignored -> {
+            for (int ignored = 0; ignored < step.count; ignored++) {
                 stacks.get(step.target - 1).addLast(stacks.get(step.source - 1).removeLast());
-            });
+            }
         }
 
         static Arrangement parse(Scanner input) {

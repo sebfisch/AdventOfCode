@@ -1,5 +1,9 @@
 package year2022.day13;
 
+// JEP 394: Pattern Matching for instanceof
+// JEP 395: Records
+// JEP 409: Sealed Classes
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Collections;
@@ -26,14 +30,14 @@ public class Part2 {
                 .map(PacketData::fromString);
 
         List<PacketData> sortedPackets = Stream
-            .concat(dividerPackets.stream(), inputPackets)
-            .sorted()
-            .toList();
+                .concat(dividerPackets.stream(), inputPackets)
+                .sorted()
+                .toList();
 
         return dividerPackets.stream()
-            .map(sortedPackets::indexOf)
-            .map(i -> i+1)
-            .reduce(1, (x,y) -> x*y);
+                .map(sortedPackets::indexOf)
+                .map(i -> i + 1)
+                .reduce(1, (x, y) -> x * y);
     }
 
     static Stream<String> inputLines() {

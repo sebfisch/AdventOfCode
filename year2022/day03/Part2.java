@@ -1,8 +1,9 @@
 package year2022.day03;
 
-import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class Part2 {
     public static void main(String[] args) {
@@ -29,11 +30,10 @@ class Part2 {
     }
 
     static Set<Character> chars(String string) {
-        Set<Character> result = new HashSet<>();
-        for (int index = 0; index < string.length(); index++) {
-            result.add(string.charAt(index));
-        }
-        return result;
+        return IntStream
+                .range(0, string.length())
+                .mapToObj(string::charAt)
+                .collect(Collectors.toSet());
     }
 
     static int priority(char item) {

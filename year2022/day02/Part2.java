@@ -1,7 +1,10 @@
 package year2022.day02;
 
+// JEP 395: Records
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -32,12 +35,9 @@ public class Part2 {
         }
 
         static Choice fromString(String code) {
-            for (Choice choice : Choice.values()) {
-                if (choice.code.equals(code)) {
-                    return choice;
-                }
-            }
-            throw new IllegalArgumentException("invalid code %s".formatted(code));
+            return Arrays.stream(Choice.values())
+                    .filter(choice -> choice.code.equals(code))
+                    .findAny().orElseThrow();
         }
 
         static final Map<Choice, Choice> BEATS = Map.of(
@@ -62,12 +62,9 @@ public class Part2 {
         }
 
         static Outcome fromString(String code) {
-            for (Outcome outcome : Outcome.values()) {
-                if (outcome.code.equals(code)) {
-                    return outcome;
-                }
-            }
-            throw new IllegalArgumentException("invalid code %s".formatted(code));
+            return Arrays.stream(Outcome.values())
+                    .filter(outcome -> outcome.code.equals(code))
+                    .findAny().orElseThrow();
         }
     }
 
@@ -85,12 +82,9 @@ public class Part2 {
         }
 
         Choice myChoice() {
-            for (Choice choice : Choice.values()) {
-                if (outcome(choice).equals(suggestedOutcome)) {
-                    return choice;
-                }
-            }
-            return null;
+            return Arrays.stream(Choice.values())
+                    .filter(choice -> outcome(choice).equals(suggestedOutcome))
+                    .findAny().orElseThrow();
         }
 
         int score() {

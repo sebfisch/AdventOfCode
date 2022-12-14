@@ -1,9 +1,13 @@
 package year2022.day03;
 
+// JEP 395: Records
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class Part1 {
@@ -36,11 +40,10 @@ class Part1 {
         }
 
         static Set<Character> chars(String string) {
-            Set<Character> result = new HashSet<>();
-            for (int index = 0; index < string.length(); index++) {
-                result.add(string.charAt(index));
-            }
-            return result;
+            return IntStream
+                    .range(0, string.length())
+                    .mapToObj(string::charAt)
+                    .collect(Collectors.toSet());
         }
     }
 

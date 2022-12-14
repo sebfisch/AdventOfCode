@@ -1,6 +1,5 @@
 package year2022.day07;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

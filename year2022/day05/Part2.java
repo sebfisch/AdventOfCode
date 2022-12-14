@@ -1,5 +1,7 @@
 package year2022.day05;
 
+// JEP 395: Records
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

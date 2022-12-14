@@ -1,5 +1,8 @@
 package year2022.day09;
 
+// JEP 361: Switch Expressions
+// JEP 395: Records
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;

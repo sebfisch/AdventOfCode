@@ -1,5 +1,11 @@
 package year2022.day10;
 
+// JEP 361: Switch Expressions
+// JEP 395: Records
+// JEP 405: Record Patterns (Preview)
+// JEP 409: Sealed Classes
+// JEP 427: Pattern Matching for switch (Third Preview)
+
 import java.util.Scanner;
 
 public class Part2 {

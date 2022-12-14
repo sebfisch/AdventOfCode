@@ -1,5 +1,7 @@
 package year2022.day12;
 
+// JEP 395: Records
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;

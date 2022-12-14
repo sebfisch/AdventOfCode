@@ -1,5 +1,9 @@
 package year2022.day13;
 
+// JEP 394: Pattern Matching for instanceof
+// JEP 395: Records
+// JEP 409: Sealed Classes
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;

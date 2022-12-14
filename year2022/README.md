@@ -21,7 +21,18 @@
 [Scanner]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html
 [Stream]: https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/package-summary.html
 
-## Import Counts
+## Recent Extensions
+
+| Count | Extension |
+| ----: | --------- |
+| 21 | [Records](https://openjdk.org/jeps/395) |
+| 8 | [Switch Expressions](https://openjdk.org/jeps/361) |
+| 6 | [Sealed Classes](https://openjdk.org/jeps/409) |
+| 4 | [Record Patterns (Preview)](https://openjdk.org/jeps/405) |
+| 4 | [Pattern Matching for switch (Third Preview)](https://openjdk.org/jeps/427) |
+| 2 | [Pattern Matching for instanceof](https://openjdk.org/jeps/394) |
+
+## Imports
 
 | Count | Import |
 | ----: | ------ |
@@ -32,14 +43,14 @@
 | 13 | [java.util.Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) |
 | 11 | [java.util.LinkedList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/LinkedList.html) |
 | 10 | [java.util.Set](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Set.html) |
-| 9 | [java.util.ArrayList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/ArrayList.html) |
+| 9 | [java.util.stream.Collectors](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Collectors.html) |
+| 8 | [java.util.ArrayList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/ArrayList.html) |
 | 8 | [java.util.Map](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html) |
+| 8 | [java.util.stream.IntStream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/IntStream.html) |
+| 7 | [java.util.Arrays](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Arrays.html) |
 | 7 | [java.util.Collections](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collections.html) |
-| 7 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
-| 7 | [java.util.stream.Collectors](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Collectors.html) |
-| 7 | [java.util.stream.IntStream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/IntStream.html) |
-| 6 | [java.util.Arrays](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Arrays.html) |
 | 6 | [java.util.HashMap](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashMap.html) |
+| 6 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
 | 4 | [java.util.Collection](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collection.html) |
 | 4 | [java.util.Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) |
 | 2 | [java.io.IOException](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/IOException.html) |
