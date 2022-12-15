@@ -41,26 +41,6 @@ The tables below list the number of source files using certain extensions and im
 
 | Count | Import |
 | ----: | ------ |
-
-## Usage Statistics
-
-The tables below list the number of source files using certain extensions and imports.
-
-### Recent Extensions
-
-| Count | Extension |
-| ----: | --------- |
-| 23 | [Records](https://openjdk.org/jeps/395) |
-| 8 | [Switch Expressions](https://openjdk.org/jeps/361) |
-| 6 | [Sealed Classes](https://openjdk.org/jeps/409) |
-| 4 | [Record Patterns (Preview)](https://openjdk.org/jeps/405) |
-| 4 | [Pattern Matching for switch (Third Preview)](https://openjdk.org/jeps/427) |
-| 2 | [Pattern Matching for instanceof](https://openjdk.org/jeps/394) |
-
-### Imports
-
-| Count | Import |
-| ----: | ------ |
 | 20 | [java.util.stream.Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.html) |
 | 19 | [java.util.List](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html) |
 | 18 | [java.io.InputStreamReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/InputStreamReader.html) |
