@@ -14,7 +14,7 @@
  1. [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12): Implements a [path finding](https://www.redblobgames.com/pathfinding/) algorithm with a [Queue](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Queue.html).
  1. [Distress Signal](https://adventofcode.com/2022/day/13): Parses nested data using predictive [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser) based on a [Scanner], compares generated data lexicographically with [pattern matching for `instanceof`](https://openjdk.org/jeps/394), and processes it using the [Stream] API.
  1. [Regolith Reservoir](https://adventofcode.com/2022/day/14): Simulates falling objects and manages their positions using the [collections framework].
- 1. [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15): Implements an algorithm based on intervals to avoid search space blowup.
+ 1. [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15): Implements an algorithm based on intervals to avoid search space blowup, comparing them using [Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) composition.
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
 [enum]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
