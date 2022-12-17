@@ -15,6 +15,7 @@
  1. [Distress Signal](https://adventofcode.com/2022/day/13): Parses nested data using predictive [recursive descent](https://en.wikipedia.org/wiki/Recursive_descent_parser) based on a [Scanner], compares generated data lexicographically with [pattern matching for `instanceof`](https://openjdk.org/jeps/394), and processes it using the [Stream] API.
  1. [Regolith Reservoir](https://adventofcode.com/2022/day/14): Simulates falling objects and manages their positions using the [collections framework].
  1. [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15): Implements an algorithm based on intervals to avoid search space blowup, comparing them using [Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) composition.
+ 1. [Proboscidea Volcanium](https://adventofcode.com/2022/day/16): Implements backtracking recursively.
 
 [collections framework]: https://docs.oracle.com/javase/tutorial/collections/index.html
 [enum]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
@@ -30,7 +31,7 @@ The tables below list the number of source files using certain extensions and im
 
 | Count | Extension |
 | ----: | --------- |
-| 23 | [Records](https://openjdk.org/jeps/395) |
+| 24 | [Records](https://openjdk.org/jeps/395) |
 | 8 | [Switch Expressions](https://openjdk.org/jeps/361) |
 | 6 | [Sealed Classes](https://openjdk.org/jeps/409) |
 | 4 | [Record Patterns (Preview)](https://openjdk.org/jeps/405) |
@@ -41,21 +42,21 @@ The tables below list the number of source files using certain extensions and im
 
 | Count | Import |
 | ----: | ------ |
-| 20 | [java.util.stream.Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.html) |
-| 19 | [java.util.List](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html) |
-| 18 | [java.io.InputStreamReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/InputStreamReader.html) |
-| 16 | [java.io.BufferedReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/BufferedReader.html) |
+| 21 | [java.util.stream.Stream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Stream.html) |
+| 20 | [java.util.List](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html) |
+| 19 | [java.io.InputStreamReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/InputStreamReader.html) |
+| 17 | [java.io.BufferedReader](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/BufferedReader.html) |
 | 13 | [java.util.Scanner](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Scanner.html) |
-| 11 | [java.util.LinkedList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/LinkedList.html) |
-| 10 | [java.util.Set](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Set.html) |
-| 10 | [java.util.stream.Collectors](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Collectors.html) |
+| 12 | [java.util.LinkedList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/LinkedList.html) |
+| 11 | [java.util.Set](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Set.html) |
+| 11 | [java.util.stream.Collectors](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/Collectors.html) |
+| 9 | [java.util.Map](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html) |
 | 9 | [java.util.stream.IntStream](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/stream/IntStream.html) |
 | 8 | [java.util.ArrayList](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/ArrayList.html) |
-| 8 | [java.util.Map](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Map.html) |
 | 7 | [java.util.Arrays](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Arrays.html) |
 | 7 | [java.util.Collections](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collections.html) |
+| 7 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
 | 6 | [java.util.HashMap](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashMap.html) |
-| 6 | [java.util.HashSet](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/HashSet.html) |
 | 5 | [java.util.Comparator](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Comparator.html) |
 | 4 | [java.util.Collection](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Collection.html) |
 | 2 | [java.io.IOException](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/IOException.html) |
@@ -65,3 +66,5 @@ The tables below list the number of source files using certain extensions and im
 | 2 | [java.util.Objects](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Objects.html) |
 | 2 | [java.util.Queue](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Queue.html) |
 | 1 | [java.util.Optional](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/Optional.html) |
+| 1 | [java.util.regex.Matcher](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/regex/Matcher.html) |
+| 1 | [java.util.regex.Pattern](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/regex/Pattern.html) |
