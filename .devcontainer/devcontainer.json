@@ -5,12 +5,17 @@
     ],
     "service": "aoc",
     "workspaceFolder": "/home/me/code",
-    "settings": {
-        "terminal.integrated.profiles.linux": {}
+    "customizations": { 
+      "vscode": {
+        "settings": {
+            "terminal.integrated.profiles.linux": {}
+        },
+        "extensions": [
+            "mhutchie.git-graph",
+            "vscjava.vscode-java-pack",
+            "ziglang.vscode-zig"
+        ]
+      }
     },
-    "extensions": [
-        "mhutchie.git-graph",
-        "vscjava.vscode-java-pack"
-    ],
     "remoteUser": "me"
 }

@@ -16,6 +16,8 @@ services:
         UID: 1000
         GID: 1000
     hostname: advent
+    environment:
+      - PATH=${PATH}:/opt/zig
     volumes:
       - home:/home
       - ~/.ssh:/home/me/.ssh/

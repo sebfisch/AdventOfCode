@@ -31,3 +31,8 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime && \
   (DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata) && \
   echo ${TZ} > /etc/timezone && \
   dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN apt-get install xz-utils && \
+  mkdir /opt/zig && \
+  ( wget -c https://ziglang.org/builds/zig-linux-x86_64-0.12.0-dev.1768+39a966b0a.tar.xz -O - \
+  | tar -xJ --strip-components=1 --directory=/opt/zig )
