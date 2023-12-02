@@ -1,11 +1,11 @@
 const std = @import("std");
 
-pub fn main() !void {
-    var stdin = std.io.bufferedReader(std.io.getStdIn().reader());
-    var stdout = std.io.getStdOut();
+const stdout = std.io.getStdOut();
+var stdin = std.io.bufferedReader(std.io.getStdIn().reader());
 
+pub fn main() !void {
     var sum: u64 = 0;
-    var buf: [4096]u8 = undefined;
+    var buf: [64]u8 = undefined;
     while (try stdin.reader().readUntilDelimiterOrEof(&buf, '\n')) |line| {
         var fst: ?u8 = null;
         var lst: ?u8 = null;

@@ -1,30 +1,34 @@
 const std = @import("std");
 
-pub fn main() !void {
-    var stdin = std.io.bufferedReader(std.io.getStdIn().reader());
-    var stdout = std.io.getStdOut();
+const stdout = std.io.getStdOut();
+var stdin = std.io.bufferedReader(std.io.getStdIn().reader());
 
+const written_digits =
+    [_][]const u8{ "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+pub fn main() !void {
     var sum: u64 = 0;
     var buf: [4096]u8 = undefined;
     while (try stdin.reader().readUntilDelimiterOrEof(&buf, '\n')) |line| {
-        var fst: ?usize = null;
-        var lst: ?usize = null;
-        for (line, 0..) |char, i| {
-            const digit: ?usize = readDigit(line[i..], char);
-            if (digit != null) {
-                fst = fst orelse digit.?;
-                lst = digit.?;
-            }
-        }
-        sum += 10 * fst.? + lst.?;
+        sum += lineValue(line);
     }
     _ = try stdout.writer().print("{d}\n", .{sum});
 }
 
-fn readDigit(s: []u8, c: u8) ?usize {
-    const written_digits =
-        [_][]const u8{ "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+fn lineValue(line: []u8) usize {
+    var fst: ?usize = null;
+    var lst: ?usize = null;
+    for (line, 0..) |char, i| {
+        const digit: ?usize = readDigit(line[i..], char);
+        if (digit) |d| {
+            fst = fst orelse d;
+            lst = d;
+        }
+    }
+    return 10 * fst.? + lst.?;
+}
 
+fn readDigit(s: []u8, c: u8) ?usize {
     if (std.ascii.isDigit(c)) {
         return c - '0';
     }
