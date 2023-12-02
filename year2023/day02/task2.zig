@@ -33,7 +33,6 @@ const Cubes = struct {
 
 const Game = struct {
     allocator: std.mem.Allocator,
-    id: usize = 0,
     cubes: std.ArrayList(Cubes),
 
     fn init(allocator: std.mem.Allocator) Game {
@@ -52,10 +51,7 @@ const Game = struct {
         errdefer game.deinit();
 
         var parts = std.mem.splitSequence(u8, str, ": ");
-
-        var gameId = std.mem.splitSequence(u8, parts.next().?, " ");
-        _ = gameId.next(); // skip "Game"
-        game.id = try std.fmt.parseInt(u8, gameId.next().?, 10);
+        _ = parts.next(); // skip first part
 
         var cubesStrings = std.mem.splitSequence(u8, parts.next().?, "; ");
         while (cubesStrings.next()) |cubesString| {
