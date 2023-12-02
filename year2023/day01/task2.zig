@@ -8,7 +8,7 @@ const written_digits =
 
 pub fn main() !void {
     var sum: u64 = 0;
-    var buf: [4096]u8 = undefined;
+    var buf: [64]u8 = undefined;
     while (try stdin.reader().readUntilDelimiterOrEof(&buf, '\n')) |line| {
         sum += lineValue(line);
     }
@@ -32,12 +32,10 @@ fn readDigit(s: []u8, c: u8) ?usize {
     if (std.ascii.isDigit(c)) {
         return c - '0';
     }
-
     for (written_digits, 1..) |written, digit| {
         if (std.mem.startsWith(u8, s, written)) {
             return digit;
         }
     }
-
     return null;
 }
