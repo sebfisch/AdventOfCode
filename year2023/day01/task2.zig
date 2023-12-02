@@ -19,7 +19,7 @@ fn lineValue(line: []u8) usize {
     var fst: ?usize = null;
     var lst: ?usize = null;
     for (line, 0..) |char, i| {
-        const digit: ?usize = readDigit(line[i..], char);
+        const digit: ?usize = readDigit(char, line[i..]);
         if (digit) |d| {
             fst = fst orelse d;
             lst = d;
@@ -28,12 +28,12 @@ fn lineValue(line: []u8) usize {
     return 10 * fst.? + lst.?;
 }
 
-fn readDigit(s: []u8, c: u8) ?usize {
-    if (std.ascii.isDigit(c)) {
-        return c - '0';
+fn readDigit(char: u8, rest: []u8) ?usize {
+    if (std.ascii.isDigit(char)) {
+        return char - '0';
     }
     for (written_digits, 1..) |written, digit| {
-        if (std.mem.startsWith(u8, s, written)) {
+        if (std.mem.startsWith(u8, rest, written)) {
             return digit;
         }
     }
