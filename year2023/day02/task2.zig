@@ -82,12 +82,6 @@ const Game = struct {
     }
 };
 
-const sampleBag = Cubes{
-    .red = 12,
-    .green = 13,
-    .blue = 14,
-};
-
 pub fn main() !void {
     var powerSum: usize = 0;
 
