@@ -32,13 +32,11 @@ const Cubes = struct {
 };
 
 const Game = struct {
-    allocator: std.mem.Allocator,
     id: usize = 0,
     cubes: std.ArrayList(Cubes),
 
     fn init(allocator: std.mem.Allocator) Game {
         return Game{
-            .allocator = allocator,
             .cubes = std.ArrayList(Cubes).init(allocator),
         };
     }

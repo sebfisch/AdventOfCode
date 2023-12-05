@@ -58,15 +58,13 @@ const Card = struct {
 };
 
 const Pile = struct {
-    allocator: *const std.mem.Allocator,
     cards: std.AutoHashMap(usize, Card),
     counts: std.AutoHashMap(usize, usize),
 
-    fn init(allocator: *const std.mem.Allocator) !Pile {
+    fn init(allocator: std.mem.Allocator) !Pile {
         return Pile{
-            .allocator = allocator,
-            .cards = std.AutoHashMap(usize, Card).init(allocator.*),
-            .counts = std.AutoHashMap(usize, usize).init(allocator.*),
+            .cards = std.AutoHashMap(usize, Card).init(allocator),
+            .counts = std.AutoHashMap(usize, usize).init(allocator),
         };
     }
 
@@ -107,7 +105,7 @@ const Pile = struct {
 };
 
 pub fn main() !void {
-    var pile = try Pile.init(&std.heap.page_allocator);
+    var pile = try Pile.init(std.heap.page_allocator);
     defer pile.deinit();
 
     var buf: [1024]u8 = undefined;
