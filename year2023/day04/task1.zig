@@ -35,8 +35,7 @@ const Card = struct {
     }
 
     fn pointValue(self: *Card) usize { // mutates self
-        self.winning.set.setIntersection(self.mine.set);
-        const matching: u4 = @intCast(self.winning.set.count());
+        const matching: u4 = @intCast(self.winning.set.intersectWith(self.mine.set).count());
         const one: u32 = 1;
         return if (matching == 0) 0 else (one << (matching - 1));
     }
