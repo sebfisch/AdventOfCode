@@ -27,6 +27,8 @@ pub fn main() !void {
         ));
     }
 
+    // Only works for very specific inputs (like the one given.)
+    // See input.txt for a counterexample.
     var lcm: usize = 1;
     for (counts.items) |count| {
         lcm *= count / std.math.gcd(lcm, count);
