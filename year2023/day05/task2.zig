@@ -1,5 +1,3 @@
-const std = @import("std");
-
 pub fn main() !void {
     var almanac = try Almanac.read();
     defer almanac.deinit();
@@ -350,6 +348,8 @@ const ConversionMap = struct {
         return result;
     }
 };
+
+const std = @import("std");
 
 const stdout = std.io.getStdOut();
 var stdin = std.io.bufferedReader(std.io.getStdIn().reader());
