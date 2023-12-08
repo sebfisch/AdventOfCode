@@ -1,0 +1,10 @@
+L
+
+AAA = (AAB, AAB)
+BBA = (BBB, BBB)
+AAB = (YYZ, YYZ)
+BBB = (BBC, BBC)
+YYZ = (ZZZ, ZZZ)
+BBC = (ZZZ, ZZZ)
+ZZZ = (XXX, XXX)
+XXX = (XXX, XXX)
