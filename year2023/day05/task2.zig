@@ -80,7 +80,7 @@ const Range = struct {
     }
 
     fn unify(self: Range, other: Range) Range { // only if touching
-        std.debug.assert(!self.precedes(other) or !other.precedes(self));
+        std.debug.assert(!self.precedes(other) and !other.precedes(self));
 
         var result = self;
         if (other.min < result.min) {
@@ -123,16 +123,12 @@ const RangeConversion = struct {
         };
     }
 
-    fn apply(self: RangeConversion, arg: Range) Range {
-        std.debug.assert(self.sourceRange.contains(arg));
-
-        var result: Range = undefined;
+    fn apply(self: RangeConversion, range: Range) Range { // only if source range contains range
+        std.debug.assert(self.sourceRange.contains(range));
         if (self.destRangeMin < self.sourceRange.min) {
-            result = arg.subtract(self.sourceRange.min - self.destRangeMin);
-        } else {
-            result = arg.add(self.destRangeMin - self.sourceRange.min);
+            return range.subtract(self.sourceRange.min - self.destRangeMin);
         }
-        return result;
+        return range.add(self.destRangeMin - self.sourceRange.min);
     }
 };
 
@@ -193,22 +189,17 @@ const Ranges = struct {
 
         // find first index of range that is after the given one, without touching
         var nextIndex = firstIndex;
-        var next: Range = undefined;
         while (nextIndex < self.sorted.items.len) : (nextIndex += 1) {
-            next = self.sorted.items[nextIndex];
-            if (range.precedes(next)) {
+            if (range.precedes(self.sorted.items[nextIndex])) {
                 break;
             }
         }
 
-        // compute merged range of given range with all ranges from first until before next
-        const merged = range.unify(first).unify(self.sorted.items[nextIndex - 1]);
-
-        // replace all ranges from first until last with merged range
+        // replace all ranges from first until before next with merged range
         _ = try self.sorted.replaceRange(
             firstIndex,
             nextIndex - firstIndex,
-            &.{merged},
+            &.{range.unify(first).unify(self.sorted.items[nextIndex - 1])},
         );
     }
 
@@ -228,12 +219,10 @@ const Ranges = struct {
             return;
         }
 
-        // find first range, starting from firstIndex, that does not overlap with the given one
+        // find first index > firstIndex, where the range does not overlap with the given one
         var nextIndex = firstIndex;
-        var next: Range = undefined;
         while (nextIndex < self.sorted.items.len) : (nextIndex += 1) {
-            next = self.sorted.items[nextIndex];
-            if (!next.overlaps(range)) {
+            if (!self.sorted.items[nextIndex].overlaps(range)) {
                 break;
             }
         }
@@ -289,11 +278,7 @@ const Ranges = struct {
         var right = first;
         left.max = range.min - 1;
         right.min = range.max + 1;
-        _ = try self.sorted.replaceRange(
-            firstIndex,
-            1,
-            &.{ left, right },
-        );
+        _ = try self.sorted.replaceRange(firstIndex, 1, &.{ left, right });
     }
 };
 
