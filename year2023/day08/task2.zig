@@ -140,12 +140,7 @@ var buf: [4096]u8 = undefined;
 const allocator = std.heap.page_allocator;
 
 fn readLine() !?[]const u8 {
-    const result = try stdin.reader().readUntilDelimiterOrEof(&buf, '\n');
-    if (result) |line| {
-        // std.debug.print("line: {any} - len: {any}\n", .{ line, line.len });
-        return line;
-    }
-    return null;
+    return try stdin.reader().readUntilDelimiterOrEof(&buf, '\n');
 }
 
 fn split(
