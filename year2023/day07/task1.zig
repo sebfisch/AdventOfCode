@@ -88,35 +88,26 @@ const HandType = enum(u8) {
             counts[@intFromEnum(card)] += 1;
         }
 
-        var has_pair: bool = false;
+        var max: u8 = 1;
         var has_two_pair: bool = false;
-        var has_three_of_a_kind: bool = false;
-        var has_four_of_a_kind: bool = false;
-        var has_five_of_a_kind: bool = false;
         for (counts) |count| {
-            switch (count) {
-                2 => {
-                    has_two_pair = has_pair;
-                    has_pair = true;
-                },
-                3 => has_three_of_a_kind = true,
-                4 => has_four_of_a_kind = true,
-                5 => has_five_of_a_kind = true,
-                else => {},
+            if (count >= 2 and max >= 2) {
+                has_two_pair = true;
             }
+            max = @max(max, count);
         }
 
-        if (has_five_of_a_kind) {
+        if (max == 5) {
             return .five_of_a_kind;
-        } else if (has_four_of_a_kind) {
+        } else if (max == 4) {
             return .four_of_a_kind;
-        } else if (has_three_of_a_kind and has_pair) {
+        } else if (max == 3 and has_two_pair) {
             return .full_house;
-        } else if (has_three_of_a_kind) {
+        } else if (max == 3) {
             return .three_of_a_kind;
         } else if (has_two_pair) {
             return .two_pair;
-        } else if (has_pair) {
+        } else if (max == 2) {
             return .one_pair;
         } else {
             return .high_card;
