@@ -90,12 +90,18 @@ const HandType = enum(u8) {
 
         var max: u8 = 0;
         var has_two_pair: bool = false;
-        for (counts) |count| {
+        for (counts, 0..) |count, index| {
+            if (index == 0) {
+                continue; // skip jokers
+            }
             if (count >= 2 and max >= 2) {
                 has_two_pair = true;
             }
             max = @max(max, count);
         }
+
+        // using jokers to increase the max is the best choice
+        max += counts[0];
 
         if (max == 5) {
             return .five_of_a_kind;
@@ -116,6 +122,7 @@ const HandType = enum(u8) {
 };
 
 const Card = enum {
+    joker,
     two,
     three,
     four,
@@ -125,7 +132,6 @@ const Card = enum {
     eight,
     nine,
     ten,
-    jack,
     queen,
     king,
     ace,
@@ -136,6 +142,7 @@ const Card = enum {
 
     fn fromChar(char: u8) Card {
         switch (char) {
+            'J' => return .joker,
             '2' => return .two,
             '3' => return .three,
             '4' => return .four,
@@ -145,7 +152,6 @@ const Card = enum {
             '8' => return .eight,
             '9' => return .nine,
             'T' => return .ten,
-            'J' => return .jack,
             'Q' => return .queen,
             'K' => return .king,
             'A' => return .ace,
