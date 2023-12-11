@@ -13,10 +13,10 @@ const Direction = enum {
 
     fn flip(self: Direction) Direction {
         switch (self) {
-            Direction.north => return Direction.south,
-            Direction.east => return Direction.west,
-            Direction.south => return Direction.north,
-            Direction.west => return Direction.east,
+            .north => return .south,
+            .east => return .west,
+            .south => return .north,
+            .west => return .east,
         }
     }
 };
@@ -27,12 +27,12 @@ const Pipe = struct {
 
     fn fromChar(char: u8) Pipe {
         switch (char) {
-            124 => return Pipe{ .fst = Direction.north, .snd = Direction.south },
-            45 => return Pipe{ .fst = Direction.east, .snd = Direction.west },
-            'L' => return Pipe{ .fst = Direction.north, .snd = Direction.east },
-            'J' => return Pipe{ .fst = Direction.north, .snd = Direction.west },
-            '7' => return Pipe{ .fst = Direction.south, .snd = Direction.west },
-            'F' => return Pipe{ .fst = Direction.south, .snd = Direction.east },
+            124 => return Pipe{ .fst = .north, .snd = .south },
+            45 => return Pipe{ .fst = .east, .snd = .west },
+            'L' => return Pipe{ .fst = .north, .snd = .east },
+            'J' => return Pipe{ .fst = .north, .snd = .west },
+            '7' => return Pipe{ .fst = .south, .snd = .west },
+            'F' => return Pipe{ .fst = .south, .snd = .east },
             else => unreachable,
         }
     }
@@ -60,10 +60,10 @@ const Position = struct {
 
     fn move(self: Position, dir: Direction) Position {
         switch (dir) {
-            Direction.north => return Position{ .x = self.x, .y = self.y - 1 },
-            Direction.east => return Position{ .x = self.x + 1, .y = self.y },
-            Direction.south => return Position{ .x = self.x, .y = self.y + 1 },
-            Direction.west => return Position{ .x = self.x - 1, .y = self.y },
+            .north => return Position{ .x = self.x, .y = self.y - 1 },
+            .east => return Position{ .x = self.x + 1, .y = self.y },
+            .south => return Position{ .x = self.x, .y = self.y + 1 },
+            .west => return Position{ .x = self.x - 1, .y = self.y },
         }
     }
 };
@@ -111,19 +111,19 @@ const Grid = struct {
     }
 
     fn initSearch(self: *Grid, next: *Position, dir: *Direction) void {
-        if (self.startConnectsTo(Direction.north, next)) {
-            dir.* = Direction.south;
+        if (self.startConnectsTo(.north, next)) {
+            dir.* = .south;
             return;
         }
 
-        if (self.startConnectsTo(Direction.east, next)) {
-            dir.* = Direction.west;
+        if (self.startConnectsTo(.east, next)) {
+            dir.* = .west;
             return;
         }
 
         // start connects to exactly two pipes, in this case south and west
-        next.* = self.starting_position.move(Direction.south);
-        dir.* = Direction.north;
+        next.* = self.starting_position.move(.south);
+        dir.* = .north;
     }
 
     fn loopSize(self: *Grid) usize {
