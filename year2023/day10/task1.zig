@@ -12,12 +12,12 @@ const Direction = enum {
     west,
 
     fn flip(self: Direction) Direction {
-        switch (self) {
-            .north => return .south,
-            .east => return .west,
-            .south => return .north,
-            .west => return .east,
-        }
+        return switch (self) {
+            .north => .south,
+            .east => .west,
+            .south => .north,
+            .west => .east,
+        };
     }
 };
 
@@ -26,15 +26,15 @@ const Pipe = struct {
     snd: Direction,
 
     fn fromChar(char: u8) Pipe {
-        switch (char) {
-            124 => return Pipe{ .fst = .north, .snd = .south },
-            45 => return Pipe{ .fst = .east, .snd = .west },
-            'L' => return Pipe{ .fst = .north, .snd = .east },
-            'J' => return Pipe{ .fst = .north, .snd = .west },
-            '7' => return Pipe{ .fst = .south, .snd = .west },
-            'F' => return Pipe{ .fst = .south, .snd = .east },
+        return switch (char) {
+            124 => Pipe{ .fst = .north, .snd = .south },
+            45 => Pipe{ .fst = .east, .snd = .west },
+            'L' => Pipe{ .fst = .north, .snd = .east },
+            'J' => Pipe{ .fst = .north, .snd = .west },
+            '7' => Pipe{ .fst = .south, .snd = .west },
+            'F' => Pipe{ .fst = .south, .snd = .east },
             else => unreachable,
-        }
+        };
     }
 
     fn connectsTo(self: Pipe, dir: Direction) bool {
@@ -59,12 +59,12 @@ const Position = struct {
     }
 
     fn move(self: Position, dir: Direction) Position {
-        switch (dir) {
-            .north => return Position{ .x = self.x, .y = self.y - 1 },
-            .east => return Position{ .x = self.x + 1, .y = self.y },
-            .south => return Position{ .x = self.x, .y = self.y + 1 },
-            .west => return Position{ .x = self.x - 1, .y = self.y },
-        }
+        return switch (dir) {
+            .north => Position{ .x = self.x, .y = self.y - 1 },
+            .east => Position{ .x = self.x + 1, .y = self.y },
+            .south => Position{ .x = self.x, .y = self.y + 1 },
+            .west => Position{ .x = self.x - 1, .y = self.y },
+        };
     }
 };
 
