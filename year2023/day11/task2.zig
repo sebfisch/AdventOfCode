@@ -111,6 +111,7 @@ const EmptySpace = struct {
         return count;
     }
 };
+
 const std = @import("std");
 
 const stdout = std.io.getStdOut();
